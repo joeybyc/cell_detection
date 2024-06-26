@@ -46,7 +46,7 @@ arXiv: https://arxiv.org/abs/2406.17577
 To cite ACCDor in publications, please use:
 
 ```bibtex
-@article{chen2024,
+@article{chen2024advancing,
       title={Advancing Cell Detection in Anterior Segment Optical Coherence Tomography Images}, 
       author={Boyu Chen and Ameenat L. Solebo and Paul Taylor},
       year={2024},
