@@ -54,3 +54,7 @@ To cite ACCDor in publications, please use:
 }
 
 ```
+## Acknowledgements
+Thanks to the support of AWS Doctoral Scholarship in Digital Innovation, awarded through the UCL Centre for Digital Innovation. We thank them for their generous support.
+![](AWS.png)
+![](CDI.png)
