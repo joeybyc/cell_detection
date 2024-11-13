@@ -51,13 +51,13 @@ def asoct_cell_detection(image_path, predictor, model, transform, params):
 if __name__ == "__main__":
     image_name = 'example1'
     image_folder = f'data/example'
-
+    image_ext = 'png'
     output_folder = f'data/output/{image_name}'
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     
-    image_path = f'{image_folder}/{image_name}.jpeg'
+    image_path = f'{image_folder}/{image_name}.{image_ext}'
     
     parser = argparse.ArgumentParser()
     parser.add_argument("-cfg", "--config", type=str, default="./configs/default_settings.yaml")
