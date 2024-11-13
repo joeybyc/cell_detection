@@ -5,6 +5,7 @@ import numpy as np
 
 # Function to process a single mask image
 def filter_candidate_cells(original_img, mask_img, model, device, transform=None, L=20):
+    model.to(device)
     if transform is None:
         transform = transforms.Compose([transforms.ToPILImage(), transforms.Resize((L, L)), transforms.ToTensor()])
     num_labels, labels = cv2.connectedComponents(mask_img)
