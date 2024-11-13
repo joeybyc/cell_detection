@@ -50,8 +50,9 @@ def asoct_cell_detection(image_path, predictor, model, transform, params):
 
 if __name__ == "__main__":
     image_name = 'example1'
+    image_ext = 'jpeg'
     image_folder = f'data/example'
-    image_ext = 'png'
+
     output_folder = f'data/output/{image_name}'
 
     if not os.path.exists(output_folder):
@@ -99,6 +100,8 @@ if __name__ == "__main__":
     cell_mask = results['cell_mask']
     cell_centroids = get_centroids(cell_mask)
     image_with_cell_boxes = draw_square(image_path, cell_centroids)
+    candidate_cell_centroids = get_centroids(candidate_cell_mask)
+    image_with_candidate_cell_boxes = draw_square(image_path, candidate_cell_centroids)
 
     # Save the masks as an image file
     cv2.imwrite(f'{output_folder}/chamber_mask.png', chamber_mask)
@@ -107,6 +110,8 @@ if __name__ == "__main__":
     cv2.imwrite(f'{output_folder}/candidate_cell_mask.png', candidate_cell_mask)
     cv2.imwrite(f'{output_folder}/cell_mask.png', cell_mask)
     image_with_cell_boxes.save(f'{output_folder}/image_with_cell_bounding_boxes.png')
+    image_with_candidate_cell_boxes.save(f'{output_folder}/image_with_candidate_cell_bounding_boxes.png')
+
 
 
 
