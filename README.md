@@ -16,7 +16,8 @@ pip install -r requirements.txt
 ```
 ## Checkpoints
 ACCDor requires a pre-trained ViT model. Download the model from the [ViT-H SAM model](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth) link.
-The link is provided in the [SAM](https://github.com/facebookresearch/segment-anything?tab=readme-ov-file#model-checkpoints) repository. Put the pre-trained model into the **models** folder
+The link is provided in the [SAM](https://github.com/facebookresearch/segment-anything?tab=readme-ov-file#model-checkpoints) repository. Put the pre-trained model into the **models** folder.
+You can also use `wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth` to download the ViT model.
 
 ## Getting Started
 To process an image, segment the AC area, and detect cells, run the following command:
