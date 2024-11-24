@@ -10,7 +10,7 @@ from lib.cell_detection.filter import filter_candidate_cells
 from lib.model.ann_cell_identification import Net
 import argparse
 from lib.common.config import cfg
-from lib.common.drawing import draw_square
+from lib.common.drawing import draw_square, overlay_transparent_mask
 from torchvision import transforms
 import torch
 import cv2
@@ -107,8 +107,8 @@ def extract_masked_region(image_path, mask_path, output_path=None):
 
 
 if __name__ == "__main__":
-    image_name = 'example1'
-    image_ext = 'jpeg'
+    image_name = 'example2'
+    image_ext = 'png'
     image_folder = f'data/example'
 
     output_folder = f'data/output/{image_name}'
@@ -157,9 +157,12 @@ if __name__ == "__main__":
     candidate_cell_mask = results['candidate_cell_mask']
     cell_mask = results['cell_mask']
     cell_centroids = get_centroids(cell_mask)
-    image_with_cell_boxes = draw_square(image_path, cell_centroids)
+    image_with_cell_boxes = draw_square(image_path, cell_centroids, cropped_output_folder=f'{output_folder}/image_with_cell_bounding_boxes')
     candidate_cell_centroids = get_centroids(candidate_cell_mask)
-    image_with_candidate_cell_boxes = draw_square(image_path, candidate_cell_centroids)
+    image_with_candidate_cell_boxes = draw_square(image_path, candidate_cell_centroids, cropped_output_folder=f'{output_folder}/image_with_candidate_cell_bounding_boxes')
+
+
+
 
     # Save the masks as an image file
     cv2.imwrite(f'{output_folder}/chamber_mask.png', chamber_mask)
@@ -192,4 +195,13 @@ if __name__ == "__main__":
         f'{output_folder}/image_with_candidate_cell_bounding_boxes.png',
         chamber_mask_path,
         f'{output_folder}/candidate_boxes_masked.png'
+    )
+
+    # Create a semi-transparent blue overlay of the chamber mask
+    overlay_transparent_mask(
+        image_path,
+        chamber_mask,
+        f'{output_folder}/image_with_blue_overlay.png',
+        color=(255, 255, 0),  # Blue in BGR format
+        alpha=0.5          # 30% opacity
     )
